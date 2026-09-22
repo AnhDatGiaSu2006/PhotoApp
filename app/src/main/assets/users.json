@@ -1,0 +1,31 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "username": "nguyen_an",
+      "email": "an.nguyen@example.com",
+      "desc": "Sinh viên yêu thích phát triển ứng dụng Android.",
+      "avatar_url": "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=500",
+      "tel": "0901234567",
+      "hobby": "Lập trình, nhiếp ảnh"
+    },
+    {
+      "id": 2,
+      "username": "tran_binh",
+      "email": "binh.tran@example.com",
+      "desc": "Thích thiết kế giao diện đơn giản và dễ sử dụng.",
+      "avatar_url": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=500",
+      "tel": "0912345678",
+      "hobby": "Thiết kế, âm nhạc"
+    },
+    {
+      "id": 3,
+      "username": "le_chi",
+      "email": "chi.le@example.com",
+      "desc": "Đang học Java và phát triển ứng dụng di động.",
+      "avatar_url": "https://images.unsplash.com/photo-1527980965255-d3b416303d12?w=500",
+      "tel": "0923456789",
+      "hobby": "Đọc sách, du lịch"
+    }
+  ]
+}
