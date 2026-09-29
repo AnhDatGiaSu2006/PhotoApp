@@ -5,7 +5,6 @@ import android.os.Handler;
 import android.os.Looper;
 import android.widget.GridView;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import com.google.gson.Gson;
 
@@ -16,6 +15,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -43,6 +43,20 @@ public class UserData {
     return null;
   }
 
+  public void loadMockData() {
+    executor.execute(() -> {
+      List<UserProfile> mockUsers = new ArrayList<>();
+      mockUsers.add(new UserProfile(1, "nguyen_an", "an.nguyen@example.com", "Sinh viên yêu thích phát triển ứng dụng Android.", "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=500", "0901234567", "Lập trình, Nhiếp ảnh"));
+      mockUsers.add(new UserProfile(2, "tran_binh", "binh.tran@example.com", "Thích thiết kế giao diện đơn giản và dễ sử dụng.", "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=500", "0912345678", "Thiết kế, Âm nhạc"));
+      mockUsers.add(new UserProfile(3, "le_chi", "chi.le@example.com", "Đang học Java và phát triển ứng dụng di động.", "https://images.unsplash.com/photo-1527980965255-d3b416303d12?w=500", "0923456789", "Đọc sách, Du lịch"));
+      mockUsers.add(new UserProfile(4, "pham_duy", "duy.pham@example.com", "Đam mê công nghệ và lập trình di động.", "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?w=500", "0934567890", "Chơi game, Thể thao"));
+      mockUsers.add(new UserProfile(5, "hoang_yen", "yen.hoang@example.com", "Yêu thích nhiếp ảnh và sáng tạo nội dung.", "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=500", "0945678901", "Nhiếp ảnh, Viết lách"));
+
+      UserList mockList = new UserList(mockUsers);
+      showUsers(mockList);
+    });
+  }
+
   public void loadData(String url) {
     Downloader.downloadWithProgress(
         url,
@@ -57,7 +71,7 @@ public class UserData {
 
           @Override
           public void onError(Exception exception) {
-            loadSampleFromAssets("Không tải được URL, đang dùng dữ liệu mẫu");
+            loadMockData();
           }
         }
     );
@@ -68,22 +82,7 @@ public class UserData {
       try (InputStream input = new FileInputStream(file)) {
         showUsers(parse(input));
       } catch (Exception exception) {
-        loadSampleFromAssets("JSON không hợp lệ, đang dùng dữ liệu mẫu");
-      }
-    });
-  }
-
-  private void loadSampleFromAssets(String message) {
-    executor.execute(() -> {
-      try (InputStream input = context.getAssets().open("users.json")) {
-        showUsers(parse(input));
-        mainHandler.post(() ->
-            Toast.makeText(context, message, Toast.LENGTH_LONG).show()
-        );
-      } catch (Exception exception) {
-        mainHandler.post(() ->
-            Toast.makeText(context, "Không thể đọc dữ liệu người dùng", Toast.LENGTH_LONG).show()
-        );
+        loadMockData();
       }
     });
   }

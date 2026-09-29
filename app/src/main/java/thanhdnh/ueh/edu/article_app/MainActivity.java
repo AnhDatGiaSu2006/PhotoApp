@@ -9,9 +9,6 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
-  // URL đề xuất. Khi có JSON thật, chỉ thay hằng số này.
-  private static final String USERS_JSON_URL =
-      "https://raw.githubusercontent.com/thanhdnh/json/main/users.json";
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -21,7 +18,9 @@ public class MainActivity extends AppCompatActivity {
 
     GridView gridView = findViewById(R.id.gridview);
     ProgressBar progressBar = findViewById(R.id.download_progress);
-    new UserData(this, gridView, progressBar).loadData(USERS_JSON_URL);
+
+    // Sử dụng mock data trực tiếp
+    new UserData(this, gridView, progressBar).loadMockData();
 
     gridView.setOnItemClickListener((parent, view, position, rowId) -> {
       Object item = parent.getItemAtPosition(position);

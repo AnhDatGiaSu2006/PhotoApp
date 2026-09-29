@@ -18,6 +18,19 @@ public class UserProfile {
   @SerializedName("hobby")
   private String hobby;
 
+  public UserProfile() {
+  }
+
+  public UserProfile(int id, String username, String email, String description, String avatarUrl, String tel, String hobby) {
+    this.id = id;
+    this.username = username;
+    this.email = email;
+    this.description = description;
+    this.avatarUrl = avatarUrl;
+    this.tel = tel;
+    this.hobby = hobby;
+  }
+
   public int getId() { return id; }
   public String getUsername() { return username; }
   public String getEmail() { return email; }

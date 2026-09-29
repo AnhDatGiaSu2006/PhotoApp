@@ -9,6 +9,14 @@ public class UserList {
   @SerializedName("users")
   private List<UserProfile> users;
 
+  public UserList() {
+    this.users = new ArrayList<>();
+  }
+
+  public UserList(List<UserProfile> users) {
+    this.users = users;
+  }
+
   public List<UserProfile> getUsers() {
     return users == null ? new ArrayList<>() : users;
   }
